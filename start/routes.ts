@@ -11,4 +11,7 @@ Route.on('/signup').render('auth/signup')
 Route.on('/login').render('auth/login')
 
 //route post for sign-up
-Route.post('/signup','SignupsController.index')
+Route.post('/signup','AuthController.signup')
+
+//route post for sign-in
+Route.post('/login','AuthController.login')

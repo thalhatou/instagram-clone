@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>sign up</title>
+    <title>login</title>
 </head>
 <body>
-    <h1>Welcome to Sign in </h1>
+  <div class="container col-md-6 m-5">
+<form action="/login" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email">
+       @if(flashMessages.has('errors.email'))
+        <small class="alert  alert-danger">{{ flashMessages.get('errors.email') }}</small>
+      @endif
+    </div>
+    <div class="form-group col-md-6">
+      <label>Password</label>
+      <input type=password" class="form-control" name="password">
+       @if(flashMessages.has('errors.password'))
+        <small class="alert alert-danger">{{ flashMessages.get('errors.password') }}</small>
+      @endif
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">login</button>
+</form>
+</div>
 </body>
 </html>

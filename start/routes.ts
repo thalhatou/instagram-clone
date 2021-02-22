@@ -9,6 +9,8 @@ Route.on('/signup').render('auth/signup')
 
 //login route
 Route.on('/login').render('auth/login')
+//login route
+Route.on('/profile').render('profile').middleware('auth')
 
 //route post for sign-up
 Route.post('/signup','AuthController.signup')

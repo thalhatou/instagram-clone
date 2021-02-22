@@ -27,10 +27,12 @@ export default class AuthController{
 
         return response.redirect('/')
 
-
     }
+
+
+    /** login controller function */
     public async login({ request, response }: HttpContextContract) {
-        const req = request.validate({
+        const req = await request.validate({
             schema: schema.create({
                 email: schema.string({}, [
                 rules.email()

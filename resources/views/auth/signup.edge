@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+</head>
+<body>
+  <div class="container col-md-6 m-5">
+{{--  <div class="container alert alert-success text-center">Hi Welcome back Yahya!</div>'
+ <h4 class="text-center mb-2">Techlewa Departments</h4>  --}}
+<form action="/signup" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Name</label>
+      <input type="text" class="form-control" name="name">
+       @if(flashMessages.has('errors.name'))
+        <small class="alert  alert-danger">{{ flashMessages.get('errors.name') }}</small>
+      @endif
+    </div>
+    <div class="form-group col-md-6">
+      <label>Email</label>
+      <input type="email" class="form-control" name="email">
+       @if(flashMessages.has('errors.email'))
+        <small class="alert  alert-danger">{{ flashMessages.get('errors.email') }}</small>
+      @endif
+    </div>
+    <div class="form-group col-md-6">
+      <label>Password</label>
+      <input type=password" class="form-control" name="password">
+       @if(flashMessages.has('errors.password'))
+        <small class="alert alert-danger">{{ flashMessages.get('errors.password') }}</small>
+      @endif
+    </div>
+    <div class="form-group col-md-6">
+      <label>Confirm Password</label>
+      <input type=password_confirmation" class="form-control" name="password_confirmation">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
+</div>
+</body>
+</html>

@@ -1,6 +1,9 @@
 @layout('layouts/app')
 @section('content')
    <h1>Welcome {{ auth.user.name }} ! </h1>
+   <form action="/verify" method="post">
+      <input type="submit" value="Resend">
+   </form>
 @endsection
    
   

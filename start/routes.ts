@@ -12,6 +12,9 @@ Route.on('/login').render('auth/login', { title: 'login' })
 //login route
 Route.on('/profile').render('profile', { title: 'profile' }).middleware('auth')
 
+//route post for email verification
+Route.post('/verify', 'EmailVerifiesController.index').middleware('auth')
+
 //route post for sign-up
 Route.post('/signup','AuthController.signup')
 

@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel,beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Mail from '@ioc:Adonis/Addons/Mail'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -25,5 +26,19 @@ export default class User extends BaseModel {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
+  }
+
+  public async sendVerificationEmail() {
+    
+      
+        //send verification mail
+  Mail.send((message) => {
+  message
+    .from('verify@instagram.com')
+    .to(this.email)
+    .subject('Please Verify Your Email!')
+    .htmlView('emails/verify', { user :this })
+})
+    
   }
 }

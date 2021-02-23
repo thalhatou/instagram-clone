@@ -1,6 +1,8 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
+  import Mail from '@ioc:Adonis/Addons/Mail'
 import User from "App/Models/User";
+
 
 export default class AuthController {
   public async signup({ request, response }: HttpContextContract) {
@@ -21,8 +23,10 @@ export default class AuthController {
       email: req.email,
       password: req.password,
     });
-    await user.save;
+    await user.save
 
+    //send verification mail
+    user?.sendVerificationEmail()
     return response.redirect("/");
   }
 

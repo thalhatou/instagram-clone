@@ -1,11 +1,10 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
-  import Mail from '@ioc:Adonis/Addons/Mail'
 import User from "App/Models/User";
 
 
 export default class AuthController {
-  public async signup({ request, response }: HttpContextContract) {
+  public async signup({ request, response ,session }: HttpContextContract) {
     const req = await request.validate({
       schema: schema.create({
         name: schema.string(),
@@ -24,6 +23,7 @@ export default class AuthController {
       password: req.password,
     });
     await user.save
+     session.flash('success', 'Account created successfully')
 
     //send verification mail
     user?.sendVerificationEmail()
@@ -31,7 +31,7 @@ export default class AuthController {
   }
 
   /** login controller function */
-  public async login({auth, request, response }: HttpContextContract) {
+  public async login({auth, request, response ,session }: HttpContextContract) {
     const req = await request.validate({
       schema: schema.create({
         email: schema.string({}, [rules.email()]),
@@ -46,9 +46,13 @@ export default class AuthController {
     
       const email = req.email
       const password = req.password
-      await auth.attempt(email, password)
+    await auth.attempt(email, password)
+     session.flash('success', 'Successfully Login')
       response.redirect('/profile')
   }
+
+
+  
   public async logout({ auth,response }: HttpContextContract) {
     await auth.logout()
     response.redirect('/')
